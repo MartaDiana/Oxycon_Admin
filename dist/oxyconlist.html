@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oxycon</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  </head>
+  <body>
+    <div class="dashboard section">
+      <div class="row all-content">
+        <!-- list -->
+        <div class="col-lg-2 col-md-2 col-sm-4 list">
+          <div class="row icon-dash">
+            <div class="col">
+              <img src="img/logo.png" alt="" />
+              <span>Oxycon</span>
+            </div>
+          </div>
+          <hr />
+          <div class="all-list">
+            <div class="row patient">
+              <div class="col">
+                <a href="patientlist.html">
+                  <h6 class=""><span class="fa fa-wheelchair" style="font-size: 20px"></span>&nbsp;Patient</h6>
+                </a>
+              </div>
+            </div>
+            <hr />
+            <div class="row doctor">
+              <div class="col">
+                <a href="doctorlist.html">
+                  <h6><span class="fa fa-user-md" style="font-size: 20px"></span>&nbsp;Doctor</h6>
+                </a>
+              </div>
+            </div>
+            <hr />
+            <div class="row tool">
+              <div class="col">
+                <a href="oxyconlist.html">
+                  <h6><span class="fa fa-medkit" style="font-size: 20px"></span> Oxycon</h6>
+                </a>
+              </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-center">
+              <button class="btn logout" id="logout">Log Out</button>
+            </div>
+          </div>
+        </div>
+        <!-- end of list -->
+
+        <!-- main content for oxycon list -->
+        <div class="col-lg-10 col-md-10 col-sm-8 main">
+          <div class="row">
+            <div class="col title">
+              <h1>PRODUCT LIST</h1>
+            </div>
+          </div>
+          <div class="row doctor">
+            <div class="col buttonupdate">
+                <a href="tambahproduct.html">
+                <button>
+                  <span class="fa fa-plus-circle" style="font-size: 20px"></span>
+                  Add New Product
+                </button>
+              </a>
+              </a>
+            </div>
+          </div>
+          <br>
+          <!-- list dokter -->
+          <div class="doctorlist-title">
+            <table class="table">
+              <thead>
+                <th>No.</th>
+                <th>Oxycon Version</th>
+                <th>Manufacturing Date</th>
+                <th>Code</th>
+                <th>Action</th>
+              </thead>
+              <tbody id="productList"></tbody>
+            </table>
+          </div>
+          <!-- end of main content for oxycon list -->
+
+          
+        <!-- Modal 1 -->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Data Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="oxyconVersion" class="labs">Oxycon Version:</label>
+                <input type="text" id="oxyconVersion"> <br>
+                <label for="manufacturingDate" class="labs">Manufacturing Date: </label>
+                <input type="text" id="manufacturingDate"> <br>
+                <label for="code" class="labs">Code:</label>
+                <input type="text" id="code"> <br>
+                <label for="idprod" class="labs" style="display: none;" >ID Dokumen</label>
+                <input type="text" id="idprod" style="display: none;"> 
+                <br>
+              </div>
+              <div class="modal-footer">
+                <button id="UpDataproc" class="UpDataproc btn btn-success" type="button">Update Data</button>
+                <!-- <button id="Deldoc" class="DelDoc btn btn-danger" type="button">Delete Data</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of modal 1 -->
+        <!-- Modal -->
+           <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Are You Sure to Delete Data?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <label for="oxyconVersion" class="labs"style="display: none;">Oxycon Version:</label>
+                  <input type="text" id="oxyconVersion"style="display: none;">
+                  <label for="manufacturingDate" class="labs"style="display: none;">Manufacturing Date:</label>
+                  <input type="text" id="manufacturingDate" style="display: none;">
+                  <label for="code" class="labs"style="display: none;">Code:</label>
+                  <input type="text" id="code"style="display: none;">
+                  <label for="idprod" class="labs" style="display: none;" >ID Product</label>
+                  <input type="text" id="idprod" style="display: none;"> 
+                </div>
+                <div class="modal-btn">
+                  <button id="Delproc" class="Delproc btn btn-danger" type="button">Delete Data</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end of modal -->
+
+      </div>
+    </div>
+
+    <!-- script -->
+    <script src="../bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <!-- end of script -->
+
+    <!-- script of firestore -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+      import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyB40QTGt7KfQQLZ_ZG8_xdep7dQhcWK8b8",
+        authDomain: "oxycon-34b18.firebaseapp.com",
+        databaseURL: "https://oxycon-34b18-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "oxycon-34b18",
+        storageBucket: "oxycon-34b18.appspot.com",
+        messagingSenderId: "648156586578",
+        appId: "1:648156586578:web:2896cc6aef48b472dbf58b",
+        measurementId: "G-0504EZS97M",
+      };
+
+      // init firebase
+      initializeApp(firebaseConfig);
+
+      // init services
+      const db = getFirestore();
+      const auth = getAuth();
+
+      //logout session
+      
+      onAuthStateChanged(auth, (user) => {
+        if (user == null) {
+          location.href = "index.html";
+        } else {
+          console.log(user);
+        }
+      });
+    
+
+      //logout
+      const logoutButton = document.getElementById("logout");
+      logoutButton.addEventListener("click", (e) => {
+        signOut(auth)
+          .then(() => {
+            console.log("User Telah Keluar");
+            window.location.href = "index.html";
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      });
+
+      /*membuat tabel untuk product*/
+        var plusnomor = 0;
+        var procList =[];
+        
+
+        const productList = document.querySelector("#productList");
+        function renderProduct(doc) {
+        let trow = document.createElement("tr");
+        var nomor = document.createElement('td');
+        let oxyconVersion = document.createElement("td");
+        let manufacturingDate = document.createElement("td");
+        let code = document.createElement("td");
+        let ControlDiv = document.createElement('td');
+        
+
+        procList.push([doc.data().versi, doc.data().tanggalproduksi,doc.data().kodealat, doc.id]);
+        
+        
+        trow.setAttribute("data-id", doc.id);
+        nomor.innerHTML = ++plusnomor;
+        oxyconVersion.textContent = doc.data().versi;
+        manufacturingDate.textContent = doc.data().tanggalproduksi;
+        code.textContent = doc.data().kodealat; 
+        ControlDiv.innerHTML += '<button style="background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden; margin-right:12px" data-toggle="modal" data-target="#exampleModal1" onclick="Fillboxes('+plusnomor+')"><i class="fa fa-pencil" style="font-size:24px; color: white; margin-left:"5px"></i></button>';
+        ControlDiv.innerHTML += '<button style="background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;" data-toggle="modal" data-target="#exampleModal2" onclick="Fillboxes('+plusnomor+')"><i class="fa fa-trash" style="font-size:24px; color: white;"></i></button>';
+
+        
+        
+        trow.appendChild(nomor);
+        trow.appendChild(oxyconVersion);
+        trow.appendChild(manufacturingDate);
+        trow.appendChild(code);
+        trow.appendChild(ControlDiv);
+
+        productList.appendChild(trow);
+      }
+      /*end of membuat tabel untuk product*/
+
+      var productid = document.getElementById('idprod');
+      var productVersion = document.getElementById('oxyconVersion');
+      var manufacturingProduct = document.getElementById('manufacturingDate');
+      var codeProduct = document.getElementById('code');
+
+      let Delproc = document.getElementById('Delproc');
+
+      /* Fungsi CRUD*/
+      window.Fillboxes=(index)=> {
+        if (index==null) {
+          productVersion.value ="";
+          manufacturingProduct.value ="";
+          codeProduct.value ="";
+          productid.value ="";
+        }
+        else{
+          --index;
+          productVersion.value = procList[index][0];
+          manufacturingProduct.value = procList[index][1];
+          codeProduct.value = procList[index][2];
+          productid.value = procList[index][3];
+        }
+      }
+      /*end of fungsi CRUD
+      
+      /* get collection product */
+         const dbListProduct = collection(db, "alatdocument");
+          getDocs(dbListProduct)
+          .then((snapshot) => {
+            let listProduct = [];
+            snapshot.docs.forEach((doc) => {
+              listProduct.push({ ...doc.data(), id: doc.id });
+              renderProduct(doc)
+            });
+            console.log(listProduct);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      /* end of get collection product */
+
+      
+      //update
+      async function UpdProc() {
+          const updatedataproc = doc(db,"alatdocument", productid.value);
+          updateDoc(updatedataproc, {
+          versi: productVersion.value,
+          tanggalproduksi: manufacturingProduct.value,
+          kodealat: codeProduct.value
+          }
+        )
+        .then(()=>{
+          console.log("add data sukses");
+          alert("Data Berhasil Update");
+          window.location.href = "oxyconlist.html";
+
+        })
+        .catch((error)=>{
+          console.log('tidak berhasil' + error);
+        });
+      }
+
+      async function delProc() {
+          const deletedataproc = doc(db,"alatdocument", productid.value);
+          await deleteDoc(deletedataproc)
+          .then(()=>{
+          console.log("delete data sukses");
+          alert("Data Berhasil Dihapus");
+          window.location.href = "oxyconlist.html";
+          })
+          .catch((error)=>{
+          console.log('tidakberhasil' + error);
+          });
+      }
+
+      // assign button
+      Delproc.addEventListener("click", delProc);
+      UpDataproc.addEventListener("click",UpdProc);
+      // 
+
+
+    </script>
+    <!-- end of list of firestore -->
+  </body>
+</html>

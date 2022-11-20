@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oxycon</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" />
+  </head>
+  <body>
+    <div class="dashboard section">
+      <div class="row all-content">
+        <!-- list -->
+        <div class="col-lg-2 col-md-2 col-sm-4 list">
+          <div class="row icon-dash">
+            <div class="col">
+              <img src="img/logo.png" alt="" />
+              <span>Oxycon</span>
+            </div>
+          </div>
+          <hr />
+          <div class="all-list">
+            <div class="row patient">
+              <div class="col">
+                <a href="patientlist.html">
+                  <h6 class=""><span class="fa fa-wheelchair" style="font-size: 20px"></span>&nbsp;Patient</h6>
+                </a>
+              </div>
+            </div>
+            <hr />
+            <div class="row doctor">
+              <div class="col">
+                <a href="doctorlist.html">
+                  <h6><span class="fa fa-user-md" style="font-size: 20px"></span>&nbsp;Doctor</h6>
+                </a>
+              </div>
+            </div>
+            <hr />
+            <div class="row tool">
+              <div class="col">
+                <a href="oxyconlist.html">
+                  <h6><span class="fa fa-medkit" style="font-size: 20px"></span> Oxycon</h6>
+                </a>
+              </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-center">
+              <button class="btn logout" id="logout">Log Out</button>
+            </div>
+          </div>
+        </div>
+        <!-- end of list -->
+
+        <!-- main content -->
+        <div class="col-lg-10 col-md-10 col-sm-8 main">
+          <div class="row">
+            <div class="col title">
+              <h1>PATIENT LIST</h1>
+            </div>
+          </div>
+          <div class="doctorlist-title">
+            <table class="table">
+              <thead>
+                <th>No.</th>
+                <th>Patient Name</th>
+                <th>ID Doctor Handler</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Action</th>
+              </thead>
+              <tbody id="pasienList"></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- end of main content -->
+
+        <!-- Modal 1 -->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Patient Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="" class="labs">Name:</label>
+                <input type="text" id="namapasien" /> <br />
+                <label for="" class="labs">Doctor Handler:</label>
+
+                <div name="" id="dokterList" style="width: 100%" selectpicker>
+                  <button id="result">Select</button>
+                </div>
+                <!-- <input type="text" id="dokterpasien" />  -->
+                <br />
+
+                <label for="" class="labs">Phone:</label>
+                <input type="text" id="phonepasien" /> <br />
+                <label for="" class="labs">Email:</label>
+                <input type="text" id="emailpasien" /> <br />
+                <label for="" class="labs" style="display: none">ID Dokumen</label>
+                <input type="text" id="idpasien" style="display: none" />
+                <br />
+              </div>
+              <div class="modal-footer">
+                <button id="UpDataPas" class="UpDataPas btn btn-success" type="button">Update Data</button>
+                <!-- <button id="Deldoc" class="DelDoc btn btn-danger" type="button">Delete Data</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of modal 1 -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are You Sure to Delete Data?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="" class="labs" style="display: none">Nama:</label>
+                <input type="text" id="namapasien" style="display: none" />
+                <label for="" class="labs" style="display: none">Dokter:</label>
+                <input type="text" id="dokterpasien" style="display: none" />
+                <label for="" class="labs" style="display: none">Phone:</label>
+                <input type="text" id="phonepasien" style="display: none" />
+                <label for="" class="labs" style="display: none">email:</label>
+                <input type="text" id="emailpasien" style="display: none" />
+                <label for="" class="labs" style="display: none">ID Dokumen</label>
+                <input type="text" id="idpasien" style="display: none" />
+              </div>
+              <div class="modal-btn">
+                <button id="Delpas" class="Delpas btn btn-danger" type="button">Delete Data</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of modal -->
+      </div>
+    </div>
+
+    <!-- script -->
+    <script src="../bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <!-- end of script -->
+
+    <!-- script of firestore -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+      import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyB40QTGt7KfQQLZ_ZG8_xdep7dQhcWK8b8",
+        authDomain: "oxycon-34b18.firebaseapp.com",
+        databaseURL: "https://oxycon-34b18-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "oxycon-34b18",
+        storageBucket: "oxycon-34b18.appspot.com",
+        messagingSenderId: "648156586578",
+        appId: "1:648156586578:web:2896cc6aef48b472dbf58b",
+        measurementId: "G-0504EZS97M",
+      };
+
+      // init firebase
+      initializeApp(firebaseConfig);
+
+      // init services
+      const db = getFirestore();
+      const auth = getAuth();
+
+      //logout session
+      /*
+      onAuthStateChanged(auth, (user) => {
+        if (user == null) {
+          location.href = "index.html";
+        } else {
+          console.log(user);
+        }
+      });
+      */
+
+      //logout
+      const logoutButton = document.getElementById("logout");
+      logoutButton.addEventListener("click", (e) => {
+        signOut(auth)
+          .then(() => {
+            console.log("User Telah Keluar");
+            window.location.href = "index.html";
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      });
+
+      var plusnomor = 0;
+      var pasList = [];
+      var docList = [];
+
+      /*membuat tabel untuk list pasien*/
+      const pasienList = document.querySelector("#pasienList");
+      function renderPasien(doc) {
+        let trow = document.createElement("tr");
+        var nomor = document.createElement("td");
+        let namaPasien = document.createElement("td");
+        let dokterPasien = document.createElement("td");
+        let phonePasien = document.createElement("td");
+        let emailPasien = document.createElement("td");
+        let ControlDiv = document.createElement("td");
+
+        pasList.push([doc.data().nama, doc.data().dokter, doc.data().phone, doc.data().email, doc.id]);
+
+        trow.setAttribute("data-id", doc.id);
+        nomor.innerHTML = ++plusnomor;
+        namaPasien.textContent = doc.data().nama;
+        dokterPasien.textContent = doc.data().dokter;
+        phonePasien.textContent = doc.data().phone;
+        emailPasien.textContent = doc.data().email;
+        ControlDiv.innerHTML +=
+          '<button style="background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden; margin-right:12px" data-toggle="modal" data-target="#exampleModal1" onclick="Fillboxes(' +
+          plusnomor +
+          ')"><i class="fa fa-pencil" style="font-size:24px; color: white; margin-left:"5px"></i></button>';
+        ControlDiv.innerHTML +=
+          '<button style="background-color: Transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden;" data-toggle="modal" data-target="#exampleModal2" onclick="Fillboxes(' +
+          plusnomor +
+          ')"><i class="fa fa-trash" style="font-size:24px; color: white;"></i></button>';
+
+        trow.appendChild(nomor);
+        trow.appendChild(namaPasien);
+        trow.appendChild(dokterPasien);
+        trow.appendChild(phonePasien);
+        trow.appendChild(emailPasien);
+        trow.appendChild(ControlDiv);
+
+        pasienList.appendChild(trow);
+      }
+      /*end of membuat tabel untuk list pasien*/
+
+      // membuat parameter dokter
+      const dokterList = document.querySelector("#dokterList");
+      function renderDokter(doc) {
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+
+        docList.push([doc.data().nama, doc.data().userId, doc.id]);
+
+        //checkbox.setAttribute("data-id", doc.id);
+        checkbox.name = doc.data().userId;
+        checkbox.value = doc.data().userId;
+
+        var label = document.createElement("label");
+        label.htmlFor = doc.data().userId;
+
+        label.appendChild(document.createTextNode(doc.data().nama));
+
+        // label.appendChild(namedok);
+        dokterList.appendChild(label);
+        dokterList.appendChild(checkbox);
+      }
+      // end of parameter dokter
+
+      //query dokter
+      let btnShow = document.querySelector("#result");
+
+      btnShow.addEventListener("click", (event) => {
+        let check = document.querySelectorAll('input[type="checkbox"]:checked');
+        let values = [];
+        check.forEach((check) => {
+          values.push(check.value);
+        });
+        console.log(values);
+      });
+
+      //ed of
+
+      //mengambil data
+
+      var idpasien = document.getElementById("idpasien");
+      var namapasien = document.getElementById("namapasien");
+      var dokterpasien = document.getElementById("dokterList");
+      var phonepasien = document.getElementById("phonepasien");
+      var emailpasien = document.getElementById("emailpasien");
+
+      let Delpas = document.getElementById("Delpas");
+
+      /* Fungsi CRUD*/
+      window.Fillboxes = (index) => {
+        if (index == null) {
+          namapasien.value = "";
+          dokterpasien.value = "";
+          phonepasien.value = "";
+          emailpasien.value = "";
+          idpasien.value = "";
+        } else {
+          --index;
+          namapasien.value = pasList[index][0];
+          dokterpasien.value = pasList[index][1];
+          phonepasien.value = pasList[index][2];
+          emailpasien.value = pasList[index][3];
+          idpasien.value = pasList[index][4];
+        }
+      };
+
+      /* get collection data pasien */
+      const dbListPasien = collection(db, "patientdocument"); //dblist pasien
+      getDocs(dbListPasien)
+        .then((snapshot) => {
+          let listPasien = [];
+          snapshot.docs.forEach((doc) => {
+            listPasien.push({ ...doc.data(), id: doc.id });
+            renderPasien(doc);
+          });
+          console.log(listPasien);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+      /* end of get collection data pasien */
+
+      /* get collection data dokter */
+      //dblist dokter
+      const dbListDokter = collection(db, "dokter");
+      getDocs(dbListDokter)
+        .then((snapshot) => {
+          let listDokter = [];
+          let listid = [];
+          snapshot.docs.forEach((doc) => {
+            listDokter.push({ ...doc.data(), id: doc.id });
+            listid.push({ idini: doc.id });
+            renderDokter(doc);
+          });
+          console.log(listDokter);
+          console.log(listid);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+      /* end of get collection data dokter */
+
+      //update
+      async function UpdPas() {
+        const updatedatapas = doc(db, "patientdocument", idpasien.value);
+        await updateDoc(updatedatapas, {
+          nama: namapasien.value,
+          dokter: arrayUnion(dokterpasien.value),
+          phone: phonepasien.value,
+          email: emailpasien.value,
+        })
+          .then(() => {
+            console.log("add data sukses");
+            alert("Data Berhasil Update");
+            window.location.href = "patientlist.html";
+          })
+          .catch((error) => {
+            console.log("unsesesful" + error);
+          });
+      }
+
+      //delete
+      async function delPas() {
+        const deletedatapas = doc(db, "patientdocument", idpasien.value);
+        await deleteDoc(deletedatapas)
+          .then(() => {
+            console.log("add data sukses");
+            alert("Data Berhasil Dihapus");
+            window.location.href = "patientlist.html";
+          })
+          .catch((error) => {
+            console.log("unsesesful" + error);
+          });
+      }
+
+      UpDataPas.addEventListener("click", UpdPas);
+      Delpas.addEventListener("click", delPas);
+    </script>
+    <!-- end of list of firestore -->
+  </body>
+</html>

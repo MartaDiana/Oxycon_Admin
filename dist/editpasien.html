@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oxycon</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  </head>
+  <body>
+    <div class="dashboard section">
+      <div class="row all-content">
+        <!-- list -->
+        <div class="col-lg-2 col-md-2 col-sm-4 list">
+          <div class="row icon-dash">
+            <div class="col">
+              <img src="img/logo.png" alt="" />
+              <span>Oxycon</span>
+            </div>
+          </div>
+          <hr />
+          <div class="all-list">
+            <div class="row patient">
+              <div class="col">
+                <a href="patientlist.html">
+                  <h6 class=""><span class="fa fa-wheelchair" style="font-size: 20px"></span>&nbsp;Patient</h6>
+                </a>
+              </div>
+            </div>
+            <hr />
+            <div class="row doctor">
+              <div class="col">
+                <a href="doctorlist.html">
+                  <h6><span class="fa fa-user-md" style="font-size: 20px"></span>&nbsp;Doctor</h6>
+                </a>
+              </div>
+            </div>
+            <hr />
+            <div class="row tool">
+              <div class="col">
+                <a href="oxyconlist.html">
+                  <h6><span class="fa fa-medkit" style="font-size: 20px"></span> Oxycon</h6>
+                </a>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <!-- end of list -->
+
+        <!-- main content -->
+        <div class="col-lg-10 col-md-10 col-sm-8 maindoc">
+          <div class="row">
+            <div class="col title">
+              <h1>UPDATE PATIENT DATA</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <section class="homepage">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <form>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" style="color: rgb(216, 216, 216)">Name</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1" style="color: rgb(216, 216, 216)">Email</label>
+                          <input type="email" class="form-control" id="exampleInputPassword1" />
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1" style="color: rgb(216, 216, 216)">Phone</label>
+                          <input type="text" class="form-control" id="exampleInputPassword1" />
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect1">Gender</label>
+                          <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Female</option>
+                            <option>Male</option>
+                          </select>
+                        </div>
+                        <div class="button">
+                          <button type="submit" class="btn" style="margin-top: 10px">Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+
+        <!-- end of main content -->
+      </div>
+    </div>
+
+    <!-- script -->
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <!-- end of script -->
+  </body>
+</html>
