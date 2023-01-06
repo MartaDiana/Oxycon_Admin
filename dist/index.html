@@ -106,7 +106,7 @@
         signInWithEmailAndPassword(auth, email, password)
           .then((cred) => {
             console.log("User Telah Masuk yipie:", cred.user);
-            location.href = "file:///D:/cobacobaweb/dist/doctorlist.html";
+            location.href = "doctorlist.html";
             loginForm.reset();
           })
           .catch((err) => {

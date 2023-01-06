@@ -36,7 +36,7 @@
                           <input type="password" class="form-control" id="pass-signup" name="password" />
                         </div>
                         <div class="button">
-                          <button  class="btn signout-btn" style="margin-top: 10px">Sign Out</button>
+                          <button  class="btn signout-btn" style="margin-top: 10px">Add Admin</button>
                         </div>
                       </form>
             </div>
@@ -83,8 +83,7 @@
         createUserWithEmailAndPassword(auth, email, password)
             .then((cred) => {
             alert("User Telah ditambahkan");
-            // location.href = "http://127.0.0.1:5501/dist/index.html";
-            location.href = "file:///D:/COBACRUDANDUI/dist/index.html";
+            location.href = "index.html";
             signupForm.reset();
             })
             .catch((err) => {

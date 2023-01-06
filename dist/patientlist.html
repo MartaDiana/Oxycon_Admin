@@ -79,7 +79,7 @@
 
         <!-- Modal 1 -->
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Update Patient Data</h5>
@@ -91,12 +91,8 @@
                 <label for="" class="labs">Name:</label>
                 <input type="text" id="namapasien" /> <br />
                 <label for="" class="labs">Doctor Handler:</label>
-
-                <div name="" id="dokterList" style="width: 100%" selectpicker>
-                  <button id="result">Select</button>
-                </div>
+                <div name="" id="dokterList"></div>
                 <!-- <input type="text" id="dokterpasien" />  -->
-                <br />
 
                 <label for="" class="labs">Phone:</label>
                 <input type="text" id="phonepasien" /> <br />
@@ -244,44 +240,38 @@
       /*end of membuat tabel untuk list pasien*/
 
       // membuat parameter dokter
-      const dokterList = document.querySelector("#dokterList");
+      const dokterList = document.getElementById("dokterList");
       function renderDokter(doc) {
         var checkbox = document.createElement("input");
+        checkbox.value = doc.data().userId;
         checkbox.type = "checkbox";
 
-        docList.push([doc.data().nama, doc.data().userId, doc.id]);
+        var label = document.createElement("span");
+        var br = document.createElement("br");
+        label.innerHTML = doc.data().nama;
 
-        //checkbox.setAttribute("data-id", doc.id);
-        checkbox.name = doc.data().userId;
-        checkbox.value = doc.data().userId;
-
-        var label = document.createElement("label");
-        label.htmlFor = doc.data().userId;
-
-        label.appendChild(document.createTextNode(doc.data().nama));
-
-        // label.appendChild(namedok);
-        dokterList.appendChild(label);
         dokterList.appendChild(checkbox);
+        dokterList.appendChild(label);
+        dokterList.appendChild(br);
       }
       // end of parameter dokter
 
       //query dokter
-      let btnShow = document.querySelector("#result");
+      let btnSelect = document.querySelector("#UpDataPas");
+      let checkboxValue = [];
 
-      btnShow.addEventListener("click", (event) => {
+      btnSelect.addEventListener("click", (event) => {
         let check = document.querySelectorAll('input[type="checkbox"]:checked');
         let values = [];
         check.forEach((check) => {
           values.push(check.value);
         });
+        checkboxValue = [...values];
         console.log(values);
       });
-
-      //ed of
+      //end of query dokter
 
       //mengambil data
-
       var idpasien = document.getElementById("idpasien");
       var namapasien = document.getElementById("namapasien");
       var dokterpasien = document.getElementById("dokterList");
@@ -349,7 +339,13 @@
         const updatedatapas = doc(db, "patientdocument", idpasien.value);
         await updateDoc(updatedatapas, {
           nama: namapasien.value,
-          dokter: arrayUnion(dokterpasien.value),
+          dokter: [],
+          phone: phonepasien.value,
+          email: emailpasien.value,
+        });
+        await updateDoc(updatedatapas, {
+          nama: namapasien.value,
+          dokter: arrayUnion(...checkboxValue),
           phone: phonepasien.value,
           email: emailpasien.value,
         })
